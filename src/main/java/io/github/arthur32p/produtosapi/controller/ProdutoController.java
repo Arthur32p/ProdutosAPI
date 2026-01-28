@@ -2,10 +2,7 @@ package io.github.arthur32p.produtosapi.controller;
 
 import io.github.arthur32p.produtosapi.model.Produto;
 import io.github.arthur32p.produtosapi.repository.ProdutoRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -28,5 +25,13 @@ public class ProdutoController {
 
         produtoRepository.save(produto);
         return produto;
+    }
+
+    @GetMapping("{id}")
+    public Produto obterPorId(@PathVariable String id){
+        // Optional<Produto> produto = produtoRepository.findById(id);
+        // return produto.isPresent() ? produto.get() : null;
+
+        return produtoRepository.findById(id).orElse(null);
     }
 }
